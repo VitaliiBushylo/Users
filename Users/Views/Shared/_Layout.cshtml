@@ -1,4 +1,4 @@
-﻿
+﻿@using System.Web.Mvc;
 @{
     Layout = null;
 }
@@ -14,8 +14,8 @@
     <title>@ViewBag.Title</title>
 </head>
 <body class="container">
-    <div class="row">
-        @Html.ActionLink("R E G I S T E R", "Register", "Home", null, new { @class = "btn btn-info text-right" })
+    <div class="row" style="padding: 10px;">
+        @Html.ActionLink("R E G I S T E R", "Register", "Home", null, new { @class = "btn btn-info" })
     </div>
     <div class="row">
         @RenderBody()

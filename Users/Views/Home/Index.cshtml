@@ -1,6 +1,16 @@
-﻿
+﻿@model List<Users.Models.User>
+
 @{
     ViewBag.Title = "Registered Users";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<div class="col-md-8 col-md-offset-2">
+    <ul>
+        @foreach (var user in Model)
+        {
+            var highlighted = user.IsNew ? "style=\"font-weight: bold;\"" : "";
+            <li @Html.Raw(highlighted)>@user.UserName</li>
+        }
+    </ul>
+</div>
