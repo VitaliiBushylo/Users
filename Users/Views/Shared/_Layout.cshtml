@@ -10,15 +10,20 @@
     <meta name="viewport" content="width=device-width" />
     <link rel="stylesheet" href="~/Content/bootstrap.css" />
     <link rel="stylesheet" href="~/Content/bootstrap-theme.css" />
-    <script type="text/javascript" src="~/scripts/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="~/scripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="~/scripts/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="~/scripts/jquery.validate.unobtrusive.js"></script>
+
+    <style>
+        .field-validation-error {
+            color: red;
+            font-weight:bold
+        }
+    </style>
+
     <title>@ViewBag.Title</title>
 </head>
 <body class="container">
-    <div class="row" style="padding: 10px;">
-        @Html.ActionLink("R E G I S T E R", "Register", "Home", null, new { @class = "btn btn-info" })
-    </div>
-    <div class="row">
         @RenderBody()
-    </div>
 </body>
 </html>

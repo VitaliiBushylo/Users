@@ -1,16 +1,26 @@
 ﻿@model List<Users.Models.User>
-
 @{
     ViewBag.Title = "Registered Users";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@{
+    var newUserId = TempData["NewcomerId"];
+    int id = 0;
+    if (newUserId != null)
+    { int.TryParse(newUserId.ToString(), out id); }
+}
+<div class="row" style="padding: 10px;">
+    @Html.ActionLink("R E G I S T E R", "Register", "Home", null, new { @class = "btn btn-info" })
+</div>
 
-<div class="col-md-8 col-md-offset-2">
-    <ul>
-        @foreach (var user in Model)
-        {
-            var highlighted = user.IsNew ? "style=\"font-weight: bold;\"" : "";
-            <li @Html.Raw(highlighted)>@user.UserName</li>
-        }
-    </ul>
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <ul>
+            @foreach (var user in Model)
+            {
+                var highlighted = newUserId != null && user.Id == id ? "style=\"font-weight: bold;\"" : "";
+                <li @Html.Raw(highlighted)>@user.UserName</li>
+            }
+        </ul>
+    </div>
 </div>
