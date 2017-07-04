@@ -1,0 +1,42 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>SPA Users</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.9.1.js"></script>
+    <script src="~/Scripts/knockout-3.4.2.js"></script>
+    <script src="~/Scripts/UsersModel.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div id="usersList" class="col-md-8">
+            <h2 class="text-center">All Users</h2>
+            <table class="table table-striped">
+                <thead>
+                    <tr><th>ID</th><th>First Name</th><th>Last Name</th><th>Full Name</th></tr>
+                </thead>
+                <tbody data-bind="foreach: usersList">
+                <tr>
+                    <td data-bind="text: Id" />
+                    <td data-bind="text: FirstName"/>
+                    <td data-bind="text: LastName"/>
+                    <td data-bind="text: FullName"/>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div id="userRegisterForm" class="col-md-3">
+
+        </div>
+    </div>
+</body>
+</html>
