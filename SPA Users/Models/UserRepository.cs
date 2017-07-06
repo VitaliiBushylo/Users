@@ -19,5 +19,13 @@ namespace SPA_Users.Models
             };
         }
         public static List<User> AllUsers { get { return _allUsers; } }
+
+        public static void Add(User user)
+        {
+            var nextId = AllUsers.Max(u => u.Id) + 1;
+            user.Id = nextId;
+
+            AllUsers.Add(user);
+        }
     }
 }

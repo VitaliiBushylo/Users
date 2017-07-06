@@ -17,25 +17,43 @@
 </head>
 <body>
     <div class="container">
+        <h2 class="text-center">User Management</h2>
+        <hr/>
         <div id="usersList" class="col-md-8">
-            <h2 class="text-center">All Users</h2>
+            <h4 class="text-center">All users</h4>
             <table class="table table-striped">
                 <thead>
                     <tr><th>ID</th><th>First Name</th><th>Last Name</th><th>Full Name</th></tr>
                 </thead>
                 <tbody data-bind="foreach: usersList">
-                <tr>
-                    <td data-bind="text: Id" />
-                    <td data-bind="text: FirstName"/>
-                    <td data-bind="text: LastName"/>
-                    <td data-bind="text: FullName"/>
-                </tr>
+                    <tr>
+                        <td data-bind="text: Id" />
+                        <td>
+                            <input data-bind="textInput: FirstName" />
+                        </td>
+                        <td>
+                            <input data-bind="textInput: LastName" />
+                        </td>
+                        <td data-bind="text: FullName" />
+                    </tr>
                 </tbody>
             </table>
         </div>
 
         <div id="userRegisterForm" class="col-md-3">
+            <h4 class="text-center">Create new user</h4>
+            <form data-bind="submit: createUser">
+                <div class="form-group">
+                    <label>First Name</label>
+                    <input id="firstName" data-bind="textInput: newUser().FirstName" class="form-control"/>
+                </div>
+                <div class="form-group">
+                    <label>Last Name</label>
+                    <input id="lastName" data-bind="textInput: newUser().LastName" class="form-control"/>
+                </div>
 
+                <input class="btn btn-info" type="submit" value="Create user"/>
+            </form>
         </div>
     </div>
 </body>

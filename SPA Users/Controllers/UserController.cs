@@ -8,11 +8,18 @@ using SPA_Users.Models;
 
 namespace SPA_Users.Controllers
 {
+    [RoutePrefix("api/user")]
     public class UserController : ApiController
     {
         public IEnumerable<User> GetAllUsers()
         {
             return UserRepository.AllUsers;
+        }
+
+        public User PostUser(User user)
+        {
+            UserRepository.Add(user);
+            return user;
         }
     }
 }

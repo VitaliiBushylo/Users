@@ -4,25 +4,57 @@
     usersListModel.getAllUsers();
 });
 
+var helper = {
+    sendAjaxRequest: (httpMethod, callback, url, data) => {
+        $.ajax("/api/user" + (url ? "/" + url : ""),
+       {
+           type: httpMethod,
+           success: callback,
+           data: data
+       });
+    }
+};
+
 function UsersListModel() {
     this.usersList = ko.observableArray();
     this.newUser = ko.observable(new NewUserModel());
 
-    this.getAllUsers = function() {
-        $.getJSON('api/user', null, (allUsers) => {
+    this.createUser = (formElement) => {
+        var newUser = {
+            FirstName: $('#firstName').val(),
+            LastName: $('#lastName').val(),
+            FullName: '',
+            Id: 0
+        };
+        helper.sendAjaxRequest("POST", (response) => {
+            this.getAllUsers();
+        }, 
+        null, newUser);
+    };
+
+    this.getAllUsers = function () {
+        helper.sendAjaxRequest("GET", (allUsers) => {
             if (allUsers) {
                 this.usersList.removeAll();
                 for (var i = 0; i < allUsers.length; i++) {
-                    this.usersList.push(allUsers[i]);
+                    this.usersList.push(new NewUserModel(allUsers[i].Id, allUsers[i].FirstName, allUsers[i].LastName));
                 }
             }
         });
-    };
+    }
+
+    //function sendAjaxRequest(httpMethod, callback, url) {
+    //    $.ajax("/api/user" + (url ? "/" + url : ""),
+    //    {
+    //        type: httpMethod,
+    //        success: callback
+    //    });
+    //}
 }
 
-function NewUserModel() {
-    this.FirstName = ko.observable();
-    this.LastName = ko.observable();
-    this.FullName = ko.computed(() =>{ return this.FirstName + ' ' + this.LastName });
-    this.Id = ko.observable();
+function NewUserModel(id, firstName, lastName) {
+    this.FirstName = ko.observable(firstName);
+    this.LastName = ko.observable(lastName);
+    this.FullName = ko.computed(() => { return this.FirstName() + ' ' + this.LastName(); }, this);
+    this.Id = ko.observable(id);
 }
