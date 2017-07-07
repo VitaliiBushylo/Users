@@ -1,6 +1,8 @@
-﻿$(document).ready(() => {
-    var usersListModel = new UsersListModel();
+﻿var usersListModel;
+$(document).ready(() => {
+    usersListModel = new UsersListModel();
     ko.applyBindings(usersListModel);
+
     usersListModel.getAllUsers();
 });
 
@@ -16,10 +18,11 @@ var helper = {
 };
 
 function UsersListModel() {
+    var model = this;
     this.usersList = ko.observableArray();
     this.newUser = ko.observable(new NewUserModel());
 
-    this.createUser = (formElement) => {
+    this.createUser = function(formElement) {
         var newUser = {
             FirstName: $('#firstName').val(),
             LastName: $('#lastName').val(),
@@ -37,19 +40,13 @@ function UsersListModel() {
             if (allUsers) {
                 this.usersList.removeAll();
                 for (var i = 0; i < allUsers.length; i++) {
+
                     this.usersList.push(new NewUserModel(allUsers[i].Id, allUsers[i].FirstName, allUsers[i].LastName));
                 }
             }
         });
     }
 
-    //function sendAjaxRequest(httpMethod, callback, url) {
-    //    $.ajax("/api/user" + (url ? "/" + url : ""),
-    //    {
-    //        type: httpMethod,
-    //        success: callback
-    //    });
-    //}
 }
 
 function NewUserModel(id, firstName, lastName) {
