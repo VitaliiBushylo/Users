@@ -170,7 +170,17 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201707100833250_AddedActivities.cs" />
+    <Compile Include="Migrations\201707100833250_AddedActivities.Designer.cs">
+      <DependentUpon>201707100833250_AddedActivities.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707100839388_Migr.cs" />
+    <Compile Include="Migrations\201707100839388_Migr.Designer.cs">
+      <DependentUpon>201707100839388_Migr.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Models\UserActivity.cs" />
     <Compile Include="Models\UserRepository.cs" />
     <Compile Include="Models\UsersDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -193,6 +203,14 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Shared\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201707100833250_AddedActivities.resx">
+      <DependentUpon>201707100833250_AddedActivities.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707100839388_Migr.resx">
+      <DependentUpon>201707100839388_Migr.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

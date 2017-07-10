@@ -9,5 +9,6 @@ namespace SPA_Users.Models
     public class UsersDbContext : DbContext
     {
         public DbSet<User> Users { get; set; }
+        public DbSet<UserActivity> UserActivities { get; set; }
     }
 }
