@@ -13,7 +13,7 @@ namespace SPA_Users.Controllers
     {
         public IEnumerable<User> GetAllUsers()
         {
-            return UserRepository.AllUsers;
+            return UserRepository.GetAllUsers();
         }
 
         public User PostUser(User user)
